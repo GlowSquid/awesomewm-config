@@ -21,6 +21,8 @@ local freedesktop   = require("freedesktop")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 local my_table      = awful.util.table or gears.table -- 4.{0,1} compatibility
 
+--local spotify_widget = require("scripts.spotify")
+
 local iconDir = awful.util.getdir("config").."/theme/icons/taglist/"
 
 -- }}}

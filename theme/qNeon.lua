@@ -28,8 +28,6 @@ theme.fg_urgent                                 = "#000000"
 theme.bg_normal                                 = "#000000ff"
 theme.bg_focus                                  = "#000000aa"
 theme.bg_urgent                                 = "#5F0000aa"
-
--- added
 theme.menu_bg_normal                            = "#000000"
 theme.menu_bg_focus                             = "#000000"
 theme.fg_minimize                               = "#ABABAB"
@@ -62,11 +60,13 @@ theme.border_width                              = 1
 theme.border_normal                             = "#00002A"
 theme.border_focus                              = "#303000"
 theme.border_marked                             = "#FF0000"
+
 -- theme.titlebar_bg_focus                         = "#3F3F3F"
 -- theme.titlebar_bg_normal                        = "#3F3F3F"
 -- theme.titlebar_bg_focus                         = theme.bg_focus
 -- theme.titlebar_bg_normal                        = theme.bg_normal
 -- theme.titlebar_fg_focus                         = theme.fg_focus
+
 theme.menu_height                               = 20
 theme.menu_width                                = 130
 theme.menu_submenu_icon                         = theme.dir .. "/icons/submenu.png"
@@ -108,7 +108,6 @@ theme.widget_spotify_stop                       = theme.dir .. "/icons/stop.png"
 theme.widget_spotify_prev                       = theme.dir .. "/icons/prev.png"
 theme.widget_spotify_next                       = theme.dir .. "/icons/next.png"
 
-
 theme.widget_mail                               = theme.dir .. "/icons/mail2.png"
 theme.widget_mail_on                            = theme.dir .. "/icons/mail_on.png"
 theme.widget_task                               = theme.dir .. "/icons/certified.png"
@@ -122,7 +121,6 @@ theme.widget_vpn_on                             = theme.dir .. "/icons/lock.png"
 theme.widget_vpn_off                            = theme.dir .. "/icons/lock_open.png"
 theme.widget_php                                = theme.dir .. "/icons/php.png"
 theme.widget_eur                                = theme.dir .. "/icons/eur.png"
-
 
 theme.tasklist_plain_task_name                  = true
 theme.tasklist_disable_task_name                = true
@@ -198,7 +196,8 @@ local eur = awful.widget.watch(
 )
 
 
-local spotifyicon = wibox.widget.imagebox(theme.widget_spotify)
+-- Spotify
+-- Get it working using this guide https://github.com/streetturtle/awesome-wm-widgets/tree/master/spotify-widget
 local GET_SPOTIFY_STATUS_CMD = 'sp status'
 local GET_CURRENT_SONG_CMD = 'sp current-oneline'
 
@@ -258,13 +257,13 @@ spotify_widget:connect_signal("button::press", function(_, _, _, button)
 end)
 
 
--- CLOCK
+-- Clock
 os.setlocale(os.getenv("LANG")) -- to localize the clock
 local clockicon = wibox.widget.imagebox(theme.widget_clock)
 local mytextclock = wibox.widget.textclock(markup("#7788af", "%a - %d.%m.%y ") .. markup("#535f7a", "") .. markup("#de5e1e", " %H:%M "))
 mytextclock.font = theme.font
 
--- CALENDAR
+-- Calendar
 theme.cal = lain.widget.calendar({
     --cal = "cal --color=always",
     attach_to = { mytextclock },
@@ -291,15 +290,15 @@ theme.weather = lain.widget.weather({
 
 
 -- Taskwarrior
-local task = wibox.widget.imagebox(theme.widget_task)
-lain.widget.contrib.task.attach(task, {
-    -- do not colorize output
-    show_cmd = "task | sed -r 's/\\x1B\\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g'"
-})
-task:buttons(my_table.join(awful.button({}, 1, lain.widget.contrib.task.prompt)))
+-- local task = wibox.widget.imagebox(theme.widget_task)
+-- lain.widget.contrib.task.attach(task, {
+--     -- do not colorize output
+--     show_cmd = "task | sed -r 's/\\x1B\\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g'"
+-- })
+-- task:buttons(my_table.join(awful.button({}, 1, lain.widget.contrib.task.prompt)))
 
 
---curl wttr.in | tac | tac | head -n 7
+
 -- Mail IMAP check
 local mailicon = wibox.widget.imagebox(theme.widget_mail)
 --[[ commented because it needs to be set before use
@@ -346,51 +345,42 @@ theme.volume = lain.widget.alsa({
 })
 
 
--- local beautiful     = require("beautiful")
--- volicon:connect_signal("button::press", function(_, _, _, button)
---     if (button == 4) then awful.spawn(os.execute(string.format("amixer -q set %s 1%%+", beautiful.volume.channel)))  -- scroll up
---     --elseif (button == 5) then awful.spawn("sp prev", false)  -- scroll down
---     end
---
--- end)
-
-
 -- MPD
-local musicplr = awful.util.terminal .. " -title Music -g 130x34-320+16 -e ncmpcpp"
-local mpdicon = wibox.widget.imagebox(theme.widget_music)
-mpdicon:buttons(my_table.join(
-    awful.button({ modkey }, 1, function () awful.spawn.with_shell(musicplr) end),
-    awful.button({ }, 1, function ()
-        awful.spawn.with_shell("mpc prev")
-        theme.mpd.update()
-    end),
-    awful.button({ }, 2, function ()
-        awful.spawn.with_shell("mpc toggle")
-        theme.mpd.update()
-    end),
-    awful.button({ }, 3, function ()
-        awful.spawn.with_shell("mpc next")
-        theme.mpd.update()
-    end)))
-theme.mpd = lain.widget.mpd({
-    settings = function()
-        if mpd_now.state == "play" then
-            artist = " " .. mpd_now.artist .. " "
-            title  = mpd_now.title  .. " "
-            mpdicon:set_image(theme.widget_music_on)
-            widget:set_markup(markup.font(theme.font, markup("#FF8466", artist) .. " " .. title))
-        elseif mpd_now.state == "pause" then
-            widget:set_markup(markup.font(theme.font, " mpd paused "))
-            mpdicon:set_image(theme.widget_music_pause)
-        else
-            widget:set_text("")
-            mpdicon:set_image(theme.widget_music)
-        end
-    end
-})
+-- local musicplr = awful.util.terminal .. " -title Music -g 130x34-320+16 -e ncmpcpp"
+-- local mpdicon = wibox.widget.imagebox(theme.widget_music)
+-- mpdicon:buttons(my_table.join(
+--     awful.button({ modkey }, 1, function () awful.spawn.with_shell(musicplr) end),
+--     awful.button({ }, 1, function ()
+--         awful.spawn.with_shell("mpc prev")
+--         theme.mpd.update()
+--     end),
+--     awful.button({ }, 2, function ()
+--         awful.spawn.with_shell("mpc toggle")
+--         theme.mpd.update()
+--     end),
+--     awful.button({ }, 3, function ()
+--         awful.spawn.with_shell("mpc next")
+--         theme.mpd.update()
+--     end)))
+-- theme.mpd = lain.widget.mpd({
+--     settings = function()
+--         if mpd_now.state == "play" then
+--             artist = " " .. mpd_now.artist .. " "
+--             title  = mpd_now.title  .. " "
+--             mpdicon:set_image(theme.widget_music_on)
+--             widget:set_markup(markup.font(theme.font, markup("#FF8466", artist) .. " " .. title))
+--         elseif mpd_now.state == "pause" then
+--             widget:set_markup(markup.font(theme.font, " mpd paused "))
+--             mpdicon:set_image(theme.widget_music_pause)
+--         else
+--             widget:set_text("")
+--             mpdicon:set_image(theme.widget_music)
+--         end
+--     end
+-- })
 
--- MEM
--- MEM
+
+-- Memory
 local memicon = wibox.widget.imagebox(theme.widget_mem)
 local mem = lain.widget.mem({
     settings = function()
@@ -414,7 +404,7 @@ local temp = lain.widget.temp({
     end
 })
 
--- / fs
+-- fs
 local fsicon = wibox.widget.imagebox(theme.widget_fs)
 theme.fs = lain.widget.fs({
     notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = "xos4 Terminus 10" },
@@ -449,7 +439,7 @@ local bat = lain.widget.bat({
     end
 })
 
--- NET
+-- Net Speed
 local neticon = wibox.widget.imagebox(theme.widget_net)
 local netdownicon = wibox.widget.imagebox(theme.widget_netdown)
 local netdowninfo = wibox.widget.textbox()
@@ -557,15 +547,16 @@ function theme.at_screen_connect(s)
             --arrow(theme.bg_normal, "#343434"),
             --wibox.container.background(wibox.container.margin(wibox.widget { spotify_widget, spotifyicon, layout = wibox.layout.align.horizontal }, 4, 7), "#343434"),
             --arrow("#343434", theme.bg_normal),
-            wibox.widget.systray(),
+
             --wibox.container.margin(vpnicon, 4, 8),
             --arrow(theme.bg_normal, "#343434"),
             -- wibox.container.background(wibox.container.margin(task, 3, 7), "#343434"),
             --arrow("#343434", theme.bg_normal),
-            wibox.container.background(wibox.container.margin(wibox.widget { spotify_widget, spotifyicon, layout = wibox.layout.align.horizontal }, 3, 6), theme.bg_focus),
             --wibox.container.background(wibox.container.margin(wibox.widget { mpdicon, theme.mpd.widget, layout = wibox.layout.align.horizontal }, 3, 6), theme.bg_focus),
-            arrow(theme.bg_normal, "#343434"),
 
+            wibox.container.background(wibox.container.margin(wibox.widget { spotify_widget, layout = wibox.layout.align.horizontal }, 4, 7), theme.bg_focus),
+            wibox.widget.systray(),
+            arrow(theme.bg_normal, "#343434"),
             wibox.container.background(wibox.container.margin(wibox.widget { mailicon, mail and mail.widget, layout = wibox.layout.align.horizontal }, 4, 7), "#343434"),
             arrow("#343434", theme.bg_normal),
             wibox.container.background(wibox.container.margin(wibox.widget { netdowninfo, neticon, netupinfo, layout = wibox.layout.align.horizontal }, 4, 7), theme.bg_focus),

@@ -5,8 +5,9 @@ A loose mixture between [multicolor and powerarrow](https://github.com/lcpz/awes
 
 
 
-###Features
-- **icon-only tags and tasks**
+## Features
+
+- icon-only tags and tasks
 - VPN-checker
 - External IP display
 - Updated currencies

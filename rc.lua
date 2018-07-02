@@ -23,7 +23,7 @@ local my_table      = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 --local spotify_widget = require("scripts.spotify")
 
-local iconDir = awful.util.getdir("config").."/theme/icons/taglist/"
+local iconDir = awful.util.getdir("config").."/qNeon/icons/taglist/"
 
 -- }}}
 
@@ -193,14 +193,9 @@ lain.layout.cascade.tile.extra_padding = 5
 lain.layout.cascade.tile.nmaster       = 5
 lain.layout.cascade.tile.ncol          = 2
 
-local theme_path = string.format("%s/.config/awesome/theme/qNeon.lua", os.getenv("HOME"))
+local theme_path = string.format("%s/.config/awesome/qNeon/qNeon.lua", os.getenv("HOME"))
 beautiful.init(theme_path)
 -- }}}
-
-
-
-
-
 
 
 -- {{{ Menu
@@ -695,6 +690,10 @@ awful.rules.rules = {
       properties = { width = 1200, height = 550 } },
     { rule = { class = "Pcmanfm" },
       properties = { opacity = .9 } },
+    { rule = { class = "Atom" },
+      properties = { tag = awful.util.tagnames[1], opacity = .95 } },
+    { rule = { class = "Gedit" },
+      properties = { tag = awful.util.tagnames[1], opacity = .9 } },
     { rule = { class = "Spotify" },
       properties = { tag = awful.util.tagnames[4], opacity = .95 } },
 }

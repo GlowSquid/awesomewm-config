@@ -1,9 +1,3 @@
---[[
-
-     Awesome WM configuration template
-     github.com/lcpz
-
---]]
 
 -- {{{ Required libraries
 local awesome, client, mouse, screen, tag = awesome, client, mouse, screen, tag
@@ -88,10 +82,10 @@ local fm           = "pcmanfm"
 -- tags
 tags = {
 	names = {"Dev", "Web", "IRC", "Fun", "Sys" },
-	layout = { awful.layout.layouts[1], awful.layout.layouts[2], awful.layout.layouts[1], awful.layout.layouts[1], awful.layout.layouts[1] },
+	layout = { awful.layout.layouts[2], awful.layout.layouts[6], awful.layout.layouts[1], awful.layout.layouts[1], awful.layout.layouts[1] },
 	icons = {iconDir.."dev.png",
 		 iconDir.."network.png",
-     iconDir.."hashtag.png",
+		 iconDir.."hashtag.png",
 		 iconDir.."joystick.png",
 		 iconDir.."system.png"}
 }
@@ -680,22 +674,24 @@ awful.rules.rules = {
     -- Titlebars
     { rule_any = { type = { "dialog", "normal" } },
           properties = { titlebars_enabled = false } },
-
-    { rule = { class = "Firefox", "Chromium", "Vivaldi" },
-          properties = { screen = 1, tag = awful.util.tagnames[2] } },
-
+    { rule_any = { class = {"Firefox", "Chromium", "Vivaldi"} },
+          properties = { screen = 1, tag = tags.names[2] } },
     { rule = { class = "Gimp", role = "gimp-image-window" },
           properties = { maximized = true } },
     { rule = { class = "Tilda" },
-      properties = { width = 1200, height = 550 } },
-    { rule = { class = "Pcmanfm" },
-      properties = { opacity = .9 } },
+          properties = { width = 1200, height = 550 } },
+    { rule = { class = "Leafpad" },
+          properties = { opacity = .6, floating = true } },
+    { rule_any = { class = {"Pcmanfm", "Nautilus"} },
+          properties = { opacity = .9, tag = tags.names[2] } },
     { rule = { class = "Atom" },
-      properties = { tag = awful.util.tagnames[1], opacity = .95 } },
+          properties = { width = 1600, maximized_vertical = true, tag = tags.names[1], opacity = .95 } },
     { rule = { class = "Gedit" },
-      properties = { tag = awful.util.tagnames[1], opacity = .9 } },
-    { rule = { class = "Spotify" },
-      properties = { tag = awful.util.tagnames[4], opacity = .95 } },
+          properties = { opacity = .9 } },
+    { rule = { class = "Slack" },
+          properties = { tag = tags.names[3] } },
+    { rule_any = { class = {"Spotify", "Audacious", "Steam"} },
+          properties = { opacity = .9, tag = tags.names[4] } },
 }
 -- }}}
 

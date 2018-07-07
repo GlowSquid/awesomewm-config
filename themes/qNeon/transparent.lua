@@ -16,14 +16,14 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 local scriptsDir = awful.util.getdir("config").."/scripts/"
 
 local theme                                     = {}
-theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/qNeon"
-theme.wallpaper                                 = theme.dir .. "/black.png"
+theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/qNeon"
+theme.wallpaper                                 = theme.dir .. "/../wallpapers/black.png"
 theme.font                                      = "Overpass 9"
 theme.fg_normal                                 = "#8ee420"
 theme.fg_abnormal                               = "80d9d8"
 theme.fg_focus                                  = "#bea420"
 theme.fg_urgent                                 = "#000000"
-theme.bg_normal                                 = "#000000"
+theme.bg_normal                                 = "#00000000"
 theme.bg_focus                                  = "#000000aa"
 theme.bg_urgent                                 = "#5F0000aa"
 theme.menu_bg_normal                            = "#000000"
@@ -33,26 +33,26 @@ theme.menu_fg_normal                            = "#aaaaaa"
 theme.menu_fg_focus                             = "#ff8c00"
 theme.menu_bg_normal                            = "#050505dd"
 theme.menu_bg_focus                             = "#050505dd"
-theme.widget_uptime                             = theme.dir .. "/icons/ac.png"
-theme.widget_weather                            = theme.dir .. "/icons/dish.png"
-theme.widget_fs                                 = theme.dir .. "/icons/fs.png"
-theme.widget_note                               = theme.dir .. "/icons/note.png"
-theme.widget_note_on                            = theme.dir .. "/icons/note_on.png"
-theme.widget_netdown                            = theme.dir .. "/icons/net_down.png"
-theme.widget_netup                              = theme.dir .. "/icons/net_up.png"
-theme.widget_net                                = theme.dir .. "/icons/net.png"
-theme.widget_clock                              = theme.dir .. "/icons/clock.png"
+theme.widget_uptime                             = theme.dir .. "/../icons/ac.png"
+theme.widget_weather                            = theme.dir .. "/../icons/dish.png"
+theme.widget_fs                                 = theme.dir .. "/../icons/fs.png"
+theme.widget_note                               = theme.dir .. "/../icons/note.png"
+theme.widget_note_on                            = theme.dir .. "/../icons/note_on.png"
+theme.widget_netdown                            = theme.dir .. "/../icons/net_down.png"
+theme.widget_netup                              = theme.dir .. "/../icons/net_up.png"
+theme.widget_net                                = theme.dir .. "/../icons/net.png"
+theme.widget_clock                              = theme.dir .. "/../icons/clock.png"
 
-theme.taglist_bg_focus                          = "#343434"
+theme.taglist_bg_focus                          = "#00000030"
 theme.taglist_fg_focus                          = "#FFFFBD"
---theme.tasklist_bg_focus                         = "#0000FF"
-theme.tasklist_fg_focus                         = "#FFFFBD"
+theme.tasklist_bg_focus                         = "#00000000"
+theme.tasklist_fg_focus                         = "#FFFFBD00"
 
 
-theme.tasklist_bg_image_focus                   = theme.dir .. "/icons/task_focus.png"
-theme.tasklist_bg_image_normal                  = theme.dir .. "/icons/task_minimize.png"
-theme.tasklist_bg_image_urgent                  = theme.dir .. "/icons/task_urgent.png"
-theme.tasklist_bg_image_minimize                = theme.dir .. "/icons/task_minimize.png"
+theme.tasklist_bg_image_focus                   = theme.dir .. "/../icons/task_focus.png"
+theme.tasklist_bg_image_normal                  = theme.dir .. "/../icons/task_minimize.png"
+theme.tasklist_bg_image_urgent                  = theme.dir .. "/../icons/task_urgent.png"
+theme.tasklist_bg_image_minimize                = theme.dir .. "/../icons/task_minimize.png"
 
 theme.border_width                              = 1
 theme.border_normal                             = "#00002A"
@@ -67,58 +67,58 @@ theme.border_marked                             = "#FF0000"
 
 theme.menu_height                               = 20
 theme.menu_width                                = 130
-theme.menu_submenu_icon                         = theme.dir .. "/icons/submenu.png"
+theme.menu_submenu_icon                         = theme.dir .. "/../icons/submenu.png"
 
-theme.awesome_icon                              = theme.dir .. "/icons/awesome.png"
-theme.taglist_squares_sel                       = theme.dir .. "/icons/square_a.png"
-theme.taglist_squares_unsel                     = theme.dir .. "/icons/square_b.png"
+theme.awesome_icon                              = theme.dir .. "/../icons/awesome.png"
+theme.taglist_squares_sel                       = theme.dir .. "/../icons/square_a.png"
+theme.taglist_squares_unsel                     = theme.dir .. "/../icons/square_b.png"
 
-theme.layout_tile                               = theme.dir .. "/icons/tile.png"
-theme.layout_tileleft                           = theme.dir .. "/icons/tileleft.png"
-theme.layout_tilebottom                         = theme.dir .. "/icons/tilebottom.png"
-theme.layout_tiletop                            = theme.dir .. "/icons/tiletop.png"
-theme.layout_fairv                              = theme.dir .. "/icons/fairv.png"
-theme.layout_fairh                              = theme.dir .. "/icons/fairh.png"
-theme.layout_spiral                             = theme.dir .. "/icons/spiral.png"
-theme.layout_dwindle                            = theme.dir .. "/icons/dwindle.png"
-theme.layout_max                                = theme.dir .. "/icons/max.png"
-theme.layout_fullscreen                         = theme.dir .. "/icons/fullscreen.png"
-theme.layout_magnifier                          = theme.dir .. "/icons/magnifier.png"
-theme.layout_floating                           = theme.dir .. "/icons/floating.png"
+theme.layout_tile                               = theme.dir .. "/../icons/tile.png"
+theme.layout_tileleft                           = theme.dir .. "/../icons/tileleft.png"
+theme.layout_tilebottom                         = theme.dir .. "/../icons/tilebottom.png"
+theme.layout_tiletop                            = theme.dir .. "/../icons/tiletop.png"
+theme.layout_fairv                              = theme.dir .. "/../icons/fairv.png"
+theme.layout_fairh                              = theme.dir .. "/../icons/fairh.png"
+theme.layout_spiral                             = theme.dir .. "/../icons/spiral.png"
+theme.layout_dwindle                            = theme.dir .. "/../icons/dwindle.png"
+theme.layout_max                                = theme.dir .. "/../icons/max.png"
+theme.layout_fullscreen                         = theme.dir .. "/../icons/fullscreen.png"
+theme.layout_magnifier                          = theme.dir .. "/../icons/magnifier.png"
+theme.layout_floating                           = theme.dir .. "/../icons/floating.png"
 
-theme.widget_ac                                 = theme.dir .. "/icons/ac.png"
-theme.widget_battery                            = theme.dir .. "/icons/battery.png"
-theme.widget_battery_low                        = theme.dir .. "/icons/battery_low.png"
-theme.widget_battery_empty                      = theme.dir .. "/icons/battery_empty.png"
-theme.widget_mem                                = theme.dir .. "/icons/mem.png"
-theme.widget_cpu                                = theme.dir .. "/icons/cpu.png"
-theme.widget_temp                               = theme.dir .. "/icons/temp.png"
+theme.widget_ac                                 = theme.dir .. "/../icons/ac.png"
+theme.widget_battery                            = theme.dir .. "/../icons/battery.png"
+theme.widget_battery_low                        = theme.dir .. "/../icons/battery_low.png"
+theme.widget_battery_empty                      = theme.dir .. "/../icons/battery_empty.png"
+theme.widget_mem                                = theme.dir .. "/../icons/mem.png"
+theme.widget_cpu                                = theme.dir .. "/../icons/cpu.png"
+theme.widget_temp                               = theme.dir .. "/../icons/temp.png"
 
-theme.widget_music                              = theme.dir .. "/icons/music.png"
-theme.widget_music_on                           = theme.dir .. "/icons/note_on.png"
-theme.widget_music_pause                        = theme.dir .. "/icons/pause.png"
-theme.widget_music_stop                         = theme.dir .. "/icons/stop.png"
+theme.widget_music                              = theme.dir .. "/../icons/music.png"
+theme.widget_music_on                           = theme.dir .. "/../icons/note_on.png"
+theme.widget_music_pause                        = theme.dir .. "/../icons/pause.png"
+theme.widget_music_stop                         = theme.dir .. "/../icons/stop.png"
 
-theme.widget_spotify                            = theme.dir .. "/icons/spotify.png"
-theme.widget_spotify_play                       = theme.dir .. "/icons/play.png"
-theme.widget_spotify_pause                      = theme.dir .. "/icons/pause.png"
-theme.widget_spotify_stop                       = theme.dir .. "/icons/stop.png"
-theme.widget_spotify_prev                       = theme.dir .. "/icons/prev.png"
-theme.widget_spotify_next                       = theme.dir .. "/icons/next.png"
+theme.widget_spotify                            = theme.dir .. "/../icons/spotify.png"
+theme.widget_spotify_play                       = theme.dir .. "/../icons/play.png"
+theme.widget_spotify_pause                      = theme.dir .. "/../icons/pause.png"
+theme.widget_spotify_stop                       = theme.dir .. "/../icons/stop.png"
+theme.widget_spotify_prev                       = theme.dir .. "/../icons/prev.png"
+theme.widget_spotify_next                       = theme.dir .. "/../icons/next.png"
 
-theme.widget_mail                               = theme.dir .. "/icons/mail2.png"
-theme.widget_mail_on                            = theme.dir .. "/icons/mail_on.png"
-theme.widget_task                               = theme.dir .. "/icons/certified.png"
-theme.widget_scissors                           = theme.dir .. "/icons/scissors.png"
-theme.widget_vol_max                            = theme.dir .. "/icons/vol_max.png"
-theme.widget_vol_high                           = theme.dir .. "/icons/vol_high.png"
-theme.widget_vol_medium                         = theme.dir .. "/icons/vol_medium.png"
-theme.widget_vol_low                            = theme.dir .. "/icons/vol_low.png"
-theme.widget_vol_mute                           = theme.dir .. "/icons/vol_mute.png"
-theme.widget_vpn_on                             = theme.dir .. "/icons/lock.png"
-theme.widget_vpn_off                            = theme.dir .. "/icons/lock_open.png"
-theme.widget_php                                = theme.dir .. "/icons/php.png"
-theme.widget_eur                                = theme.dir .. "/icons/eur.png"
+theme.widget_mail                               = theme.dir .. "/../icons/mail2.png"
+theme.widget_mail_on                            = theme.dir .. "/../icons/mail_on.png"
+theme.widget_task                               = theme.dir .. "/../icons/certified.png"
+theme.widget_scissors                           = theme.dir .. "/../icons/scissors.png"
+theme.widget_vol_max                            = theme.dir .. "/../icons/vol_max.png"
+theme.widget_vol_high                           = theme.dir .. "/../icons/vol_high.png"
+theme.widget_vol_medium                         = theme.dir .. "/../icons/vol_medium.png"
+theme.widget_vol_low                            = theme.dir .. "/../icons/vol_low.png"
+theme.widget_vol_mute                           = theme.dir .. "/../icons/vol_mute.png"
+theme.widget_vpn_on                             = theme.dir .. "/../icons/lock.png"
+theme.widget_vpn_off                            = theme.dir .. "/../icons/lock_open.png"
+theme.widget_php                                = theme.dir .. "/../icons/php.png"
+theme.widget_eur                                = theme.dir .. "/../icons/eur.png"
 
 theme.tasklist_plain_task_name                  = true
 theme.tasklist_disable_task_name                = true
@@ -126,30 +126,29 @@ theme.tasklist_spacing                          = 5
 theme.tasklist_disable_icon                     = false
 theme.useless_gap                               = 5
 
--- theme.titlebar_close_button_focus               = theme.dir .. "/icons/titlebar/close_focus.png"
--- theme.titlebar_close_button_normal              = theme.dir .. "/icons/titlebar/close_normal.png"
--- theme.titlebar_ontop_button_focus_active        = theme.dir .. "/icons/titlebar/ontop_focus_active.png"
--- theme.titlebar_ontop_button_normal_active       = theme.dir .. "/icons/titlebar/ontop_normal_active.png"
--- theme.titlebar_ontop_button_focus_inactive      = theme.dir .. "/icons/titlebar/ontop_focus_inactive.png"
--- theme.titlebar_ontop_button_normal_inactive     = theme.dir .. "/icons/titlebar/ontop_normal_inactive.png"
--- theme.titlebar_sticky_button_focus_active       = theme.dir .. "/icons/titlebar/sticky_focus_active.png"
--- theme.titlebar_sticky_button_normal_active      = theme.dir .. "/icons/titlebar/sticky_normal_active.png"
--- theme.titlebar_sticky_button_focus_inactive     = theme.dir .. "/icons/titlebar/sticky_focus_inactive.png"
--- theme.titlebar_sticky_button_normal_inactive    = theme.dir .. "/icons/titlebar/sticky_normal_inactive.png"
--- theme.titlebar_floating_button_focus_active     = theme.dir .. "/icons/titlebar/floating_focus_active.png"
--- theme.titlebar_floating_button_normal_active    = theme.dir .. "/icons/titlebar/floating_normal_active.png"
--- theme.titlebar_floating_button_focus_inactive   = theme.dir .. "/icons/titlebar/floating_focus_inactive.png"
--- theme.titlebar_floating_button_normal_inactive  = theme.dir .. "/icons/titlebar/floating_normal_inactive.png"
--- theme.titlebar_maximized_button_focus_active    = theme.dir .. "/icons/titlebar/maximized_focus_active.png"
--- theme.titlebar_maximized_button_normal_active   = theme.dir .. "/icons/titlebar/maximized_normal_active.png"
--- theme.titlebar_maximized_button_focus_inactive  = theme.dir .. "/icons/titlebar/maximized_focus_inactive.png"
--- theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/maximized_normal_inactive.png"
+theme.bg_systray                                = theme.bg_normal
 
 local markup = lain.util.markup
 local separators = lain.util.separators
 
 local dots = wibox.widget.textbox(" ::: ")
+local space = wibox.widget.textbox(" ")
+--local gpmdp = require("scripts.gpmdp")
 
+
+local bitcoin = awful.widget.watch(
+    "curl -m5 -s 'https://coinbase.com/api/v1/prices/buy'",
+    43200, -- half day
+    function(widget, stdout)
+        local btc, pos, err = require("dkjson").decode(stdout, 1, nil) -- dkjson
+        local btc, pos, err = require("lain.util").dkjson.decode(stdout, 1, nil) -- lain
+        --local btc_price = (not err and btc and btc["subtotal"]["amount"]) or "N/A"
+
+        -- customize here
+--        widget:set_text(btc_price)
+        widget:set_markup(markup.fontfg(theme.font, "#1E8022", btc_price))
+    end
+)
 
 
 -- IP
@@ -509,8 +508,8 @@ function theme.at_screen_connect(s)
 
 
     local function list_update(w, buttons, label, data, objects)
-      common.list_update(w, buttons, label, data, objects)
-    w:set_max_widget_size(28)
+        common.list_update(w, buttons, label, data, objects)
+        w:set_max_widget_size(28)
     end
 
     s.mytasklist = awful.widget.tasklist(s,
@@ -520,13 +519,9 @@ function theme.at_screen_connect(s)
     list_update,
     wibox.layout.flex.horizontal())
 
+
     -- Create the wibox
-    s.mywibox = awful.wibar({
-      position = "top",
-      screen = s,
-      height = 20,
-      bg = theme.bg_normal,
-      fg = theme.fg_normal })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = 20, bg = theme.bg_normal .. "00" })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -541,45 +536,23 @@ function theme.at_screen_connect(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            --arrow(theme.bg_normal, "#343434"),
-            --wibox.container.background(wibox.container.margin(wibox.widget { spotify_widget, spotifyicon, layout = wibox.layout.align.horizontal }, 4, 7), "#343434"),
-            --arrow("#343434", theme.bg_normal),
-
-            --wibox.container.margin(vpnicon, 4, 8),
-            --arrow(theme.bg_normal, "#343434"),
-            -- wibox.container.background(wibox.container.margin(task, 3, 7), "#343434"),
-            --arrow("#343434", theme.bg_normal),
-            --wibox.container.background(wibox.container.margin(wibox.widget { mpdicon, theme.mpd.widget, layout = wibox.layout.align.horizontal }, 3, 6), theme.bg_focus),
-            wibox.container.background(wibox.container.margin(wibox.widget { spotify_widget, layout = wibox.layout.align.horizontal }, 4, 7), theme.bg_focus),
-            wibox.widget.systray(),
-            arrow(theme.bg_normal, "#343434"),
-            wibox.container.background(wibox.container.margin(wibox.widget { mailicon, mail and mail.widget, layout = wibox.layout.align.horizontal }, 4, 7), "#343434"),
-            arrow("#343434", theme.bg_normal),
-            wibox.container.background(wibox.container.margin(wibox.widget { netdowninfo, neticon, netupinfo, layout = wibox.layout.align.horizontal }, 4, 7), theme.bg_focus),
-            arrow(theme.bg_normal, "#343434"),
-            wibox.container.background(wibox.container.margin(wibox.widget { phpicon, php, layout = wibox.layout.align.horizontal }, 4, 7), "#343434"),
-            arrow("#343434", theme.bg_normal),
-            wibox.container.background(wibox.container.margin(wibox.widget { euricon, eur, layout = wibox.layout.align.horizontal }, 4, 7), theme.bg_focus),
-            arrow(theme.bg_normal, "#343434"),
-            wibox.container.background(wibox.container.margin(wibox.widget { weathericon, theme.weather.widget, layout = wibox.layout.align.horizontal }, 4, 7), "#343434"),
-            arrow("#343434", theme.bg_normal),
-            wibox.container.background(wibox.container.margin(wibox.widget { vpnicon, pub_ip, layout = wibox.layout.align.horizontal }, 4, 7), theme.bg_focus),
-            arrow(theme.bg_normal, "#343434"),
-            wibox.container.background(wibox.container.margin(wibox.widget { memicon, mem.widget, layout = wibox.layout.align.horizontal }, 4, 7), "#343434"),
-            arrow("#343434", theme.bg_normal),
-            wibox.container.background(wibox.container.margin(wibox.widget { cpuicon, cpu.widget, layout = wibox.layout.align.horizontal }, 4, 7), theme.bg_focus),
-            arrow(theme.bg_normal, "#343434"),
-            wibox.container.background(wibox.container.margin(wibox.widget { tempicon, temp.widget, layout = wibox.layout.align.horizontal }, 4, 7), "#343434"),
-            arrow("#343434", theme.bg_normal),
-            wibox.container.background(wibox.container.margin(wibox.widget { fsicon, theme.fs.widget, layout = wibox.layout.align.horizontal }, 4, 7), theme.bg_focus),
-            arrow(theme.bg_normal, "#343434"),
-            wibox.container.background(wibox.container.margin(wibox.widget { volicon, theme.volume.widget, layout = wibox.layout.align.horizontal }, 4, 7), "#343434"),
-            arrow("#343434", theme.bg_normal),
-            wibox.container.background(wibox.container.margin(wibox.widget { baticon, bat.widget, layout = wibox.layout.align.horizontal }, 4, 7), theme.bg_focus),
-            arrow(theme.bg_normal, "#343434"),
-            wibox.container.background(wibox.container.margin(wibox.widget { clockicon, mytextclock, layout = wibox.layout.align.horizontal }, 4, 7), "#343434"),
-            arrow_right("#343434", theme.bg_normal),
+            spotify_widget,
+            
+            mailicon, mail and mail.widget, space,
+            netdowninfo, neticon, netupinfo, space,
+            phpicon, php, space,
+            euricon, eur, space,
+            weathericon, theme.weather.widget, space,
+            vpnicon, pub_ip, space,
+            memicon, mem.widget, space,
+            cpuicon, cpu.widget, space,
+            tempicon, temp.widget, space,
+            fsicon, theme.fs.widget, space, 
+            volicon, theme.volume.widget, space,
+            baticon, bat.widget, space,
+            clockicon, mytextclock, space,
             s.mylayoutbox,
+            wibox.widget.systray(),
             --mylauncher,
         },
     }

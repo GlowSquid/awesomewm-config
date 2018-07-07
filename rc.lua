@@ -15,16 +15,28 @@ local freedesktop   = require("freedesktop")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 local my_table      = awful.util.table or gears.table -- 4.{0,1} compatibility
 
---local spotify_widget = require("scripts.spotify")
+local iconDir = awful.util.getdir("config").."/icons/taglist/"
 
-local iconDir = awful.util.getdir("config").."/qNeon/icons/taglist/"
 
 -- }}}
+
+
+
+
+-- Pick one of the themes:
+
+-- qNeon
+local theme = string.format("%s/.config/awesome/themes/qNeon/qNeon.lua", os.getenv("HOME"))
+-- qNeon Transparent wibar
+--local theme = string.format("%s/.config/awesome/themes/qNeon/transparent.lua", os.getenv("HOME"))
+
+
+
 
 -- {{{ Error handling
 if awesome.startup_errors then
     naughty.notify({ preset = naughty.config.presets.critical,
-                     title = "Oops, there were errors during startup!",
+                     title = "Crap, there were errors during startup!",
                      text = awesome.startup_errors })
 end
 
@@ -35,7 +47,7 @@ do
         in_error = true
 
         naughty.notify({ preset = naughty.config.presets.critical,
-                         title = "Oops, an error happened!",
+                         title = "Shit.. some error happened!",
                          text = tostring(err) })
         in_error = false
     end)
@@ -82,7 +94,7 @@ local fm           = "pcmanfm"
 -- tags
 tags = {
 	names = {"Dev", "Web", "IRC", "Fun", "Sys" },
-	layout = { awful.layout.layouts[2], awful.layout.layouts[6], awful.layout.layouts[1], awful.layout.layouts[1], awful.layout.layouts[1] },
+	layout = { awful.layout.layouts[1], awful.layout.layouts[10], awful.layout.layouts[1], awful.layout.layouts[1], awful.layout.layouts[1] },
 	icons = {iconDir.."dev.png",
 		 iconDir.."network.png",
 		 iconDir.."hashtag.png",
@@ -175,7 +187,12 @@ awful.util.tasklist_buttons = my_table.join(
                                           end),
                      awful.button({ }, 5, function ()
                                               awful.client.focus.byidx(-1)
-                                          end))
+                                          end),
+                     -- sigterm
+                     awful.button({ }, 8, function(c) c:kill() end),
+                     -- sigkill
+                     awful.button({ }, 9, function(c) awful.spawn("kill -9 " .. c.pid) end))
+
 
 lain.layout.termfair.nmaster           = 3
 lain.layout.termfair.ncol              = 1
@@ -187,8 +204,9 @@ lain.layout.cascade.tile.extra_padding = 5
 lain.layout.cascade.tile.nmaster       = 5
 lain.layout.cascade.tile.ncol          = 2
 
-local theme_path = string.format("%s/.config/awesome/qNeon/qNeon.lua", os.getenv("HOME"))
-beautiful.init(theme_path)
+
+--local theme
+beautiful.init(theme)
 -- }}}
 
 
@@ -207,14 +225,27 @@ local myawesomemenu = {
     { "hibernate", "systemctl hibernate"},
     { "shut off", "systemctl poweroff"},
 }
+
+local myfavmenu = {
+    { "Corona", "wine C:\\\\Program\\ Files\\ \\(x86\\)\\\\Corona\\ Labs\\\\Corona\\\\Corona\\ Simulator.exe"},
+    { "WoW Vanilla", "wine a/Wow/WoW.exe" },
+    { "Photoshop", "wine a/Photoshop/PhotoshopPortable.exe" },
+    { "Firefox", "firejail firefox" },
+    { "Chromium", "firejail chromium" },
+    { "Spotify", "spotify" },
+    { "PCmanFM", "pcmanfm" },
+}
+
 awful.util.mymainmenu = freedesktop.menu.build({
     icon_size = beautiful.menu_height or 20,
     before = {
         { "Awesome", myawesomemenu, beautiful.awesome_icon },
-        -- other triads can be put here
+        { "Favorites", myfavmenu},
     },
     after = {
         { "Open terminal", terminal },
+        { "ncdu", terminal .. " ncdu"},
+        { "htop", terminal .. " -e htop"}
         -- other triads can be put here
     }
 })
@@ -420,9 +451,9 @@ globalkeys = my_table.join(
 
     -- Brightness
     awful.key({ }, "XF86MonBrightnessUp", function () awful.util.spawn("xbacklight -inc 10") end,
-              {description = "+10%", group = "hotkeys"}),
+              {description = "+5%", group = "hotkeys"}),
     awful.key({ }, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight -dec 10") end,
-              {description = "-10%", group = "hotkeys"}),
+              {description = "-5%", group = "hotkeys"}),
 
 
     -- Screenshots
@@ -431,7 +462,7 @@ globalkeys = my_table.join(
     awful.key({modkey }, "Print", function ()
       awful.util.spawn("scrot '%Y-%m-%d."..random_string(5)..".png' --exec 'eog \"$f\"; mv \"$f\" ~/p/Screenshots'")
     end),
-    -- Print only Wibar
+    -- Print selected
     awful.key({modkey, "Shift" }, "Print", false, function ()
       awful.util.spawn("scrot '%Y-%m-%d."..random_string(5)..".png' --select --exec 'eog \"$f\"; mv \"$f\" ~/p/Screenshots'")
     end),
@@ -563,6 +594,8 @@ clientkeys = my_table.join(
         {description = "toggle fullscreen", group = "client"}),
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
               {description = "close", group = "client"}),
+    awful.key({ modkey, "Shift"   }, "æ", function (c) awful.spawn("kill -9 " .. c.pid)      end,
+              {description = "really close", group = "client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
@@ -585,7 +618,6 @@ clientkeys = my_table.join(
         end ,
         {description = "maximize", group = "client"})
 )
-
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it works on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
@@ -683,9 +715,12 @@ awful.rules.rules = {
     { rule = { class = "Leafpad" },
           properties = { opacity = .6, floating = true } },
     { rule_any = { class = {"Pcmanfm", "Nautilus"} },
-          properties = { opacity = .9, tag = tags.names[2] } },
+          properties = { opacity = .9 } },
+    { rule = { class = "code" },
+          properties = { opacity = .9 } },
     { rule = { class = "Atom" },
-          properties = { width = 1600, maximized_vertical = true, tag = tags.names[1], opacity = .95 } },
+--          properties = { width = 1600, maximized_vertical = true, tag = tags.names[1], opacity = .95 } },
+          properties = { tag = tags.names[1], opacity = .95 } },
     { rule = { class = "Gedit" },
           properties = { opacity = .9 } },
     { rule = { class = "Slack" },
@@ -781,3 +816,4 @@ client.connect_signal("focus", border_adjust)
 client.connect_signal("property::maximized", border_adjust)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+--

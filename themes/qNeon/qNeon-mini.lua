@@ -1,5 +1,5 @@
 --[[
-    qNeon theme
+    qNeon-Mini theme
 --]]
 
 local gears = require("gears")
@@ -124,7 +124,7 @@ theme.tasklist_plain_task_name                  = true
 theme.tasklist_disable_task_name                = true
 theme.tasklist_spacing                          = 5
 theme.tasklist_disable_icon                     = false
-theme.useless_gap                               = 5
+theme.useless_gap                               = 0
 
 local markup = lain.util.markup
 local separators = lain.util.separators
@@ -181,13 +181,13 @@ local php = awful.widget.watch(
   end
 )
 
-local euricon = wibox.widget.imagebox(theme.widget_eur)
-local eur = awful.widget.watch(
-  "python3 " .. scriptsDir .. "/eur.py", 14400,
-  function(widget, stdout, stderr, exitreason, exitcode)
-    widget:set_markup(markup.fontfg(theme.font, "#FFBD00", stdout))
-  end
-)
+-- local euricon = wibox.widget.imagebox(theme.widget_eur)
+-- local eur = awful.widget.watch(
+--   "python3 " .. scriptsDir .. "/eur.py", 14400,
+--   function(widget, stdout, stderr, exitreason, exitcode)
+--     widget:set_markup(markup.fontfg(theme.font, "#FFBD00", stdout))
+--   end
+-- )
 
 
 -- Spotify
@@ -254,7 +254,7 @@ end)
 -- Clock
 os.setlocale(os.getenv("LANG")) -- to localize the clock
 local clockicon = wibox.widget.imagebox(theme.widget_clock)
-local mytextclock = wibox.widget.textclock(markup("#7788af", "%a - %d.%m.%y ") .. markup("#535f7a", "") .. markup("#de5e1e", " %H:%M "))
+local mytextclock = wibox.widget.textclock(markup("#7788af", " %H:%M "))
 mytextclock.font = theme.font
 
 -- Calendar
@@ -550,14 +550,18 @@ function theme.at_screen_connect(s)
             wibox.container.background(wibox.container.margin(wibox.widget { spotify_widget, layout = wibox.layout.align.horizontal }, 4, 7), theme.bg_focus),
             wibox.widget.systray(),
             arrow(theme.bg_normal, "#343434"),
-            wibox.container.background(wibox.container.margin(wibox.widget { mailicon, mail and mail.widget, layout = wibox.layout.align.horizontal }, 4, 7), "#343434"),
+            --wibox.container.background(wibox.container.margin(wibox.widget { mailicon, mail and mail.widget, layout = wibox.layout.align.horizontal }, 4, 7), "#343434"),
+            --arrow("#343434", theme.bg_normal),
+            -- wibox.container.background(wibox.container.margin(wibox.widget { netdowninfo, neticon, netupinfo, layout = wibox.layout.align.horizontal }, 4, 7), theme.bg_focus),
+            -- arrow(theme.bg_normal, "#343434"),
+            wibox.container.background(wibox.container.margin(wibox.widget { netdowninfo, neticon, netupinfo, layout = wibox.layout.align.horizontal }, 4, 7), "#343434"),
             arrow("#343434", theme.bg_normal),
-            wibox.container.background(wibox.container.margin(wibox.widget { netdowninfo, neticon, netupinfo, layout = wibox.layout.align.horizontal }, 4, 7), theme.bg_focus),
+            --wibox.container.background(wibox.container.margin(wibox.widget { phpicon, php, layout = wibox.layout.align.horizontal }, 4, 7), "#343434"),
+            --arrow("#343434", theme.bg_normal),
+            wibox.container.background(wibox.container.margin(wibox.widget { phpicon, php, layout = wibox.layout.align.horizontal }, 4, 7), theme.bg_focus),
             arrow(theme.bg_normal, "#343434"),
-            wibox.container.background(wibox.container.margin(wibox.widget { phpicon, php, layout = wibox.layout.align.horizontal }, 4, 7), "#343434"),
-            arrow("#343434", theme.bg_normal),
-            wibox.container.background(wibox.container.margin(wibox.widget { euricon, eur, layout = wibox.layout.align.horizontal }, 4, 7), theme.bg_focus),
-            arrow(theme.bg_normal, "#343434"),
+            --wibox.container.background(wibox.container.margin(wibox.widget { euricon, eur, layout = wibox.layout.align.horizontal }, 4, 7), theme.bg_focus),
+            --arrow(theme.bg_normal, "#343434"),
             wibox.container.background(wibox.container.margin(wibox.widget { weathericon, theme.weather.widget, layout = wibox.layout.align.horizontal }, 4, 7), "#343434"),
             arrow("#343434", theme.bg_normal),
             wibox.container.background(wibox.container.margin(wibox.widget { vpnicon, pub_ip, layout = wibox.layout.align.horizontal }, 4, 7), theme.bg_focus),

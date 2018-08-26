@@ -1,5 +1,5 @@
 --[[
-    qNeon theme
+    qNeon-Transparent theme
 --]]
 
 local gears = require("gears")

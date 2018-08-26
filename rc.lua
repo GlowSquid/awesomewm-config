@@ -26,7 +26,9 @@ local iconDir = awful.util.getdir("config").."/icons/taglist/"
 -- Pick one of the themes:
 
 -- qNeon
-local theme = string.format("%s/.config/awesome/themes/qNeon/qNeon.lua", os.getenv("HOME"))
+--local theme = string.format("%s/.config/awesome/themes/qNeon/qNeon.lua", os.getenv("HOME"))
+-- qNeon mini - Some widgets removed
+local theme = string.format("%s/.config/awesome/themes/qNeon/qNeon-mini.lua", os.getenv("HOME"))
 -- qNeon Transparent wibar
 --local theme = string.format("%s/.config/awesome/themes/qNeon/transparent.lua", os.getenv("HOME"))
 
@@ -229,10 +231,14 @@ local myawesomemenu = {
 local myfavmenu = {
     { "Corona", "wine C:\\\\Program\\ Files\\ \\(x86\\)\\\\Corona\\ Labs\\\\Corona\\\\Corona\\ Simulator.exe"},
     { "WoW Vanilla", "wine a/Wow/WoW.exe" },
+    { "EVE Online", "wine .wine/drive_c/EVE/Launcher/evelauncher.exe" },
     { "Photoshop", "wine a/Photoshop/PhotoshopPortable.exe" },
     { "Firefox", "firejail firefox" },
     { "Chromium", "firejail chromium" },
+    { "Gcolor2", "gcolor2" },
+    { "Calc", "libreoffice --calc" },
     { "Spotify", "spotify" },
+    { "Google Play Music", "gpmdp" },
     { "PCmanFM", "pcmanfm" },
 }
 
